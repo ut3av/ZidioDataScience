@@ -1,0 +1,5 @@
+Command text
+---------------
+Rules of variables :
+a - z , A - Z 
+0 to 9 

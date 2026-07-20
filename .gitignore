@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints
+
+# Streamlit
+.streamlit/
+.streamlit_prefs.json
+
+# Data
+data/raw/
+*.csv
+*.xlsx
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Byte-compiled / logs
+*.log
+
+# Ignore local secret files
+secrets.toml
+
+# Ignore system files
+Thumbs.db
