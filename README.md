@@ -22,7 +22,7 @@ NeuralRetail leverages a modern, robust data science stack engineered for perfor
 | Component / Layer | Technology / Library | Version | Purpose & Technical Function |
 | :--- | :--- | :--- | :--- |
 | **Frontend Framework** | `Streamlit` | `>= 1.28.0` | Powers the reactive web interface, tabbed navigation, sidebar controls, dynamic metrics, and session state. |
-| **Custom Styling** | `HTML5 / CSS3` | Native | Cherry Blossom Luminous theme with soft pink gradients, glassmorphism cards, micro-animations, and elevated UI hierarchy. |
+| **Custom Styling** | `HTML5 / CSS3` | Native | Pink Theme Luminous theme with soft pink gradients, glassmorphism cards, micro-animations, and elevated UI hierarchy. |
 | **Data Processing** | `Pandas` | `>= 2.0.0` | Performs data manipulation, daily time-series resampling (`resample('D')`), groupby aggregations, and datatypes normalization. |
 | **Numeric Engine** | `NumPy` | `>= 1.24.0` | Fast vector operations, logarithmic transformations (`np.log1p`), array math, and metric calculations. |
 | **Excel Parser** | `OpenPyXL` | `>= 3.1.0` | Engine for reading `.xlsx` e-commerce spreadsheet files. |
@@ -145,7 +145,7 @@ ZidioDataScience/
 
 ### 1. Clone or Open the Repository
 ```bash
-git clone https://github.com/ut3av/ZidioDataScience.git
+git clone https://github.com/heyyypalak/ZidioDataScience.git
 cd ZidioDataScience
 ```
 
