@@ -1,4 +1,4 @@
-# 📈 NeuralRetail & RetailPulse: Enterprise AI Retail Analytics Platform
+# 🔭 NeuralRetail & RetailPulse: Enterprise AI Retail Analytics Platform
 
 ![NeuralRetail Hero Banner](docs/neuralretail_hero.png)
 
