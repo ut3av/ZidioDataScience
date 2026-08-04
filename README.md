@@ -1,156 +1,233 @@
-# NeuralRetail Dashboard
+# 📈 NeuralRetail & RetailPulse: Enterprise AI Retail Analytics Platform
 
-Welcome to the NeuralRetail Dashboard project. This repository contains a beginner-friendly retail analytics app built with Python and Streamlit. It helps you understand sales performance, customer behavior, forecasting, and inventory planning using a simple web dashboard.
+![NeuralRetail Hero Banner](docs/neuralretail_hero.png)
 
-![NeuralRetail preview](docs/neuralretail_preview.png)
+[![Python Version](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
+[![Streamlit Framework](https://img.shields.io/badge/streamlit-v1.28+-FF4B4B.svg)](https://streamlit.io/)
+[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E.svg)](https://scikit-learn.org/)
+[![Facebook Prophet](https://img.shields.io/badge/Forecasting-Prophet-008080.svg)](https://facebook.github.io/prophet/)
+[![XGBoost Engine](https://img.shields.io/badge/ML-XGBoost-150458.svg)](https://xgboost.readthedocs.io/)
+[![Plotly Visualization](https://img.shields.io/badge/DataViz-Plotly-3F4F75.svg)](https://plotly.com/)
+[![Docker Ready](https://img.shields.io/badge/Docker-Containerized-2496ED.svg)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## What is this project?
+> **NeuralRetail / RetailPulse** is an enterprise-grade, end-to-end Data Science, Machine Learning, and Business Intelligence web application built with **Python**, **Streamlit**, and **Scikit-Learn / Meta Prophet**. It transforms raw e-commerce transaction data into actionable decision-making metrics—enabling real-time KPI tracking, dynamic RFM customer segmentation, AI-powered time-series demand forecasting, and automated inventory stockout risk prevention.
 
-This project is a retail intelligence dashboard. It turns raw transaction data into useful business insights.
+---
 
-In simple terms, it helps a business answer questions like:
-- Which countries are generating the most revenue?
-- Which products are selling well?
-- Which customers are most valuable?
-- What might sales look like in the next 30 days?
-- Which products may need more stock?
+## 🛠️ Complete Technology Stack & Architecture
 
-## Why this project matters
+NeuralRetail leverages a modern, robust data science stack engineered for performance, scalability, and interactive data visualization.
 
-Retail companies deal with a large amount of transaction data every day. Without analysis, this data is just numbers. This app helps convert that data into:
-- clear business metrics
-- interactive visual reports
-- simple forecasting
-- customer segmentation
-- inventory recommendations
+| Component / Layer | Technology / Library | Version | Purpose & Technical Function |
+| :--- | :--- | :--- | :--- |
+| **Frontend Framework** | `Streamlit` | `>= 1.28.0` | Powers the reactive web interface, tabbed navigation, sidebar controls, dynamic metrics, and session state. |
+| **Custom Styling** | `HTML5 / CSS3` | Native | Cherry Blossom Luminous theme with soft pink gradients, glassmorphism cards, micro-animations, and elevated UI hierarchy. |
+| **Data Processing** | `Pandas` | `>= 2.0.0` | Performs data manipulation, daily time-series resampling (`resample('D')`), groupby aggregations, and datatypes normalization. |
+| **Numeric Engine** | `NumPy` | `>= 1.24.0` | Fast vector operations, logarithmic transformations (`np.log1p`), array math, and metric calculations. |
+| **Excel Parser** | `OpenPyXL` | `>= 3.1.0` | Engine for reading `.xlsx` e-commerce spreadsheet files. |
+| **Machine Learning** | `Scikit-Learn` | `>= 1.3.0` | Features `StandardScaler` normalization, `KMeans` clustering for customer segmentation, and `silhouette_score` evaluation. |
+| **AI Time-Series** | `Meta Prophet` | `>= 1.1.4` | Additive time-series forecasting model handling trend changepoints, daily seasonality, zero-filled non-trading dates, and confidence bands. |
+| **Predictive Benchmark** | `XGBoost` | `>= 1.7.0` | Extreme Gradient Boosting engine used for benchmark regression tasks. |
+| **Interactive Visuals** | `Plotly Express / Graph Objects` | `>= 5.15.0` | Renders interactive 3D scatter plots, dynamic line charts, dual-axis trend graphs, and hover tooltips. |
+| **Static Graphics** | `Matplotlib` & `Seaborn` | `>= 3.7.0` | Clean enterprise whitegrid-styled static visual distributions. |
+| **DevOps & Deploy** | `Docker` & `Streamlit Cloud` | Cross-platform | Containerized deployment configuration and cloud hosting support. |
 
-## Main features
+---
 
-- Loads retail sales data from Excel or CSV files
-- Cleans and standardizes important columns
-- Calculates total price automatically
-- Provides filters for country, date range, product, and search text
-- Shows useful KPIs such as revenue, order count, and average order value
-- Segments customers into groups such as champions, potential, at-risk, and new/low-value customers
-- Creates a 30-day sales forecast
-- Suggests inventory-related actions
-- Displays data in an easy-to-use Streamlit dashboard
+## 🌟 Key Platform Features & Modules
 
-## Demo preview
+### 📊 1. Executive Revenue & Sales Dashboard
+- **Real-Time Enterprise KPIs**: Track Total Revenue ($), Total Completed Invoices, Active Unique Buyers, and Average Order Value (AOV).
+- **Dynamic Daily Revenue Trends**: Interactive revenue line charts overlaid with a 7-Day Moving Average (MA) to smooth out weekly seasonality.
+- **Geographic Breakdown**: Multi-country revenue distribution comparison and regional market analysis.
+- **Top Product Performance**: Highlights top 10 best-selling items by both sales volume (quantity) and revenue generated.
 
-![Animated demo](docs/neuralretail_demo.gif)
+### 👥 2. Dynamic RFM Customer Segmentation (K-Means Machine Learning)
+- **RFM Metric Calculation**:
+  - **Recency ($R$)**: Days elapsed since customer's last invoice date.
+  - **Frequency ($F$)**: Count of unique completed purchases.
+  - **Monetary ($M$)**: Total revenue spend generated by the customer.
+- **Machine Learning Pipeline**:
+  1. Applies Logarithmic Transformation $\log(1 + x)$ to handle heavily skewed RFM distributions.
+  2. Standardizes features using `StandardScaler` ($\mu=0, \sigma=1$).
+  3. Clusters customer profiles using `KMeans` with automatic `silhouette_score` evaluation.
+  4. Profiles clusters into actionable tiers: **Champions 👑**, **Loyal Customers 🌟**, **Potential / Core 🎯**, and **At-Risk / Dormant ⚠️**.
+- **Interactive 3D Visualization**: Plotly 3D scatter plot of Recency vs Frequency vs Monetary with exportable segment CSV tables.
 
-## Project structure
+### 🔮 3. AI-Powered Demand & Revenue Forecasting (Meta Prophet)
+- **Continuous Time-Series Ingestion**: Resamples transaction logs to daily totals, automatically backfilling missing non-trading days with zero revenue to avoid structural bias.
+- **Flexible Horizons**: Forecast **7, 14, 30, 60, or 90 days** into the future for both **Revenue ($)** and **Order Volume (Invoices)**.
+- **Contiguous Projections**: Seamless visual transition from historical trendlines into future predictions, complete with 80% confidence interval upper and lower error bounds ($yhat_{\text{lower}}, yhat_{\text{upper}}$).
 
-- NeuralRetail_app.py – the main Streamlit dashboard app
-- requirements.txt – Python libraries needed to run the app
-- data/raw/ – folder where your raw retail data file should be placed
-- docs/ – images and demo assets for this README
-- .venv/ – local virtual environment for running the app
+### 📦 4. Automated Inventory & Safety Stock Planning (Reorder Point ROP)
+- **Sales Velocity**: Calculates average daily consumption rate per product over the historical trading window.
+- **Statistical Safety Stock & ROP Formulas**:
+  $$\text{Safety Stock} = Z \times \sigma_{\text{daily}} \times \sqrt{\text{Lead Time}}$$
+  $$\text{Reorder Point (ROP)} = (\text{Daily Velocity} \times \text{Lead Time}) + \text{Safety Stock}$$
+- **Stockout Risk Badging**: Automatically flags inventory items into clear operational categories:
+  - 🔴 **CRITICAL REORDER**: Current stock below Reorder Point.
+  - 🟡 **WARNING ROP**: Current stock approaching safety threshold.
+  - 🟢 **ADEQUATE**: Stock levels sufficient for current lead time window.
 
-## Data requirement
+### 🔍 5. Interactive Data Explorer & CSV Export
+- Searchable, paginated transaction data viewer with multi-column filtering.
+- One-click CSV export functionality for reporting and downstream BI integration (PowerBI / Tableau).
 
-Place your retail dataset in the folder below:
+---
 
-- data/raw/online_retail.xlsx
+## 📐 Mathematical & Statistical Formulations
 
-If the Excel file is not found, the app will try to find the first CSV or XLSX file in the data/raw folder.
+### 1. RFM Feature Standardization & Log Transform
+$$\tilde{X} = \ln(1 + X)$$
+$$Z = \frac{\tilde{X} - \mu_{\tilde{X}}}{\sigma_{\tilde{X}}}$$
 
-## How to run this project locally
+### 2. Prophet Additive Time-Series Equation
+$$y(t) = g(t) + s(t) + h(t) + \epsilon_t$$
+*where $g(t)$ represents piecewise linear trend, $s(t)$ accounts for periodic seasonality, $h(t)$ accounts for holiday effects, and $\epsilon_t$ is normally distributed error.*
 
-If you are new to Python, follow these steps carefully.
+### 3. Reorder Point (ROP) Formula
+$$\text{ROP} = (d \times L) + Z \times \sigma_d \times \sqrt{L}$$
+*where $d$ is average daily demand velocity, $L$ is lead time in days, $\sigma_d$ is standard deviation of daily demand, and $Z$ is normal distribution Z-score for desired service level.*
 
-### 1. Open the project folder
-```bash
-cd c:\Users\palak\intern_course
+---
+
+## 🏗️ System Pipeline Architecture
+
+```mermaid
+flowchart TD
+    A[Raw Retail Data Excel/CSV] --> B[Data Cleaning & Schema Normalization]
+    B --> C[Feature Engineering: TotalPrice, Daily Resampling, RFM Metrics]
+    
+    C --> D[Streamlit Reactive Web App]
+    
+    D --> E[Tab 1: Revenue & KPI Overview]
+    D --> F[Tab 2: RFM Customer K-Means Clustering]
+    D --> G[Tab 3: Meta Prophet Demand Forecasting]
+    D --> H[Tab 4: Inventory ROP & Safety Stock Planning]
+    D --> I[Tab 5: Data Explorer & CSV Export]
+
+    F --> J[StandardScaler + KMeans Model]
+    G --> K[Prophet Time-Series Engine]
+    H --> L[Statistical ROP Formula Engine]
 ```
 
-### 2. Create and activate a virtual environment
-If you already have the virtual environment in this folder, you can use it directly.
+---
 
-```bash
-c:\Users\palak\intern_course\.venv\Scripts\python.exe -m venv .venv
+## 📁 Repository Structure
+
+```
+ZidioDataScience/
+├── NeuralRetail_app.py         # Main enterprise Streamlit web application
+├── RetailPulse.py              # Alternative lightweight Streamlit implementation
+├── requirements.txt            # Python dependencies with version bounds
+├── LICENSE                     # MIT Open Source License
+├── README.md                   # Comprehensive platform documentation
+├── Command.txt                 # Launch reference commands
+├── RetailPulse Architecture.txt# System architecture notes
+├── RetailPulse PowerBI Dashboards.txt # PowerBI dashboard specifications
+├── docs/
+│   ├── neuralretail_hero.png   # Top-class visual header banner
+│   ├── neuralretail_demo.gif   # UI animation preview
+│   └── neuralretail_preview.png# Dashboard screenshot preview
+└── data/
+    └── raw/
+        └── online_retail.xlsx  # Primary transaction dataset (~45.6 MB)
 ```
 
-### 3. Install dependencies
+---
+
+## 🚀 Quickstart Guide
+
+### Prerequisites
+- **Python 3.9+** installed on your system.
+- Git (optional, for cloning).
+
+### 1. Clone or Open the Repository
 ```bash
-c:\Users\palak\intern_course\.venv\Scripts\python.exe -m pip install -r requirements.txt
+git clone https://github.com/ut3av/ZidioDataScience.git
+cd ZidioDataScience
 ```
 
-### 4. Start the app
+### 2. Create & Activate Virtual Environment
 ```bash
-c:\Users\palak\intern_course\.venv\Scripts\python.exe -m streamlit run NeuralRetail_app.py
+# On Windows (PowerShell)
+python -m venv .venv
+.venv\Scripts\activate
+
+# On macOS / Linux
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-After running the command, Streamlit will open the app in your browser.
-
-## How to use the dashboard
-
-Once the app is running:
-1. Open the sidebar filters.
-2. Choose one or more countries.
-3. Pick a date range.
-4. Filter by product or search text.
-5. Review the KPI cards and charts.
-6. Explore forecast and inventory suggestions.
-
-This helps you focus the dashboard on the part of the business you want to understand.
-
-## Beginner-friendly explanation of the main files
-
-- NeuralRetail_app.py
-  - This is the main application file.
-  - It loads the data, prepares it, and builds the dashboard UI.
-  - It contains the charts, metrics, filters, and forecasting logic.
-
-- requirements.txt
-  - This file lists all Python libraries needed to run the project.
-  - If something is missing, install it from here.
-
-- data/raw/
-  - This is the folder where your raw dataset should be stored.
-  - The app expects retail transaction data in Excel or CSV format.
-
-## Git and GitHub guide
-
-If you are using Git for the first time, these commands will help you:
-
+### 3. Install Dependencies
 ```bash
-git status
-git add .
-git commit -m "Updated dashboard README"
-git push
+pip install -r requirements.txt
 ```
 
-If you want to create a new branch:
-
+### 4. Run the Application
 ```bash
-git checkout -b feature/my-update
+streamlit run NeuralRetail_app.py
+```
+*The app will automatically open in your default browser at `http://localhost:8501`.*
+
+---
+
+## 🐳 Docker Deployment Guide
+
+To containerize and deploy NeuralRetail using Docker:
+
+### 1. Create a `Dockerfile`:
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8501
+
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+ENTRYPOINT ["streamlit", "run", "NeuralRetail_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
-## Troubleshooting
-
-If the app does not start:
-- Make sure Python is installed.
-- Make sure the virtual environment exists.
-- Make sure all packages from requirements.txt are installed.
-- Make sure the data file exists in data/raw/.
-
-If you see an error about missing modules, run:
-
+### 2. Build and Run Container
 ```bash
-c:\Users\palak\intern_course\.venv\Scripts\python.exe -m pip install -r requirements.txt
+docker build -t neuralretail-app .
+docker run -p 8501:8501 neuralretail-app
 ```
 
-## Future improvements
+---
 
-Possible next steps for this project:
-- Add more advanced forecasting models
-- Improve visual design
-- Add user authentication
-- Connect to a real database
-- Deploy to Streamlit Cloud or Azure
+## 🌐 Deployment to Streamlit Community Cloud
 
-## Summary
+1. Push this repository to **GitHub**.
+2. Go to [share.streamlit.io](https://share.streamlit.io/).
+3. Connect your GitHub account and click **New App**.
+4. Select repository: `ut3av/ZidioDataScience`.
+5. Set **Main file path** to `NeuralRetail_app.py`.
+6. Click **Deploy**!
 
-This project is a practical introduction to data science, machine learning, and business analytics using Python. It is a great example of how raw data can be transformed into meaningful insights for retail decision-making.
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing & Support
+
+Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request.
+
+*Built for data-driven retail analytics, customer intelligence, and automated inventory optimization.*
