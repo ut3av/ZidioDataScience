@@ -1,6 +1,6 @@
 # 🔭 NeuralRetail & RetailPulse: Enterprise AI Retail Analytics Platform
 
-![NeuralRetail Hero Banner](docs/neuralretail_hero.png)
+![NeuralRetail Hero Banner](docs/neuralretail_hero_premium.png)
 
 [![Python Version](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![Streamlit Framework](https://img.shields.io/badge/streamlit-v1.28+-FF4B4B.svg)](https://streamlit.io/)
